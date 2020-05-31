@@ -24,7 +24,7 @@ Parameters:
     - prod
     Description: 'Environment'
     Type: 'String'
-    Default: 'dev'
+    Default: 'stg'
 
   CodePipelineBucketPrefix:
     Description: CodePipeline needs a utility bucket for its internal use. Specify a unique prefix for the bucket name
@@ -33,7 +33,7 @@ Parameters:
 
   GitHubRepository:
     Type: String
-    Default: harishchitipothu/aws-serverless-code-pipeline-cfn-template/master
+    Default: harishchitipothu/aws-serverless-code-pipeline-cf-template/master
     Description:  harishchitipothu/aws-serverless-code-pipeline-cf-template/master
 
   GitHubOAuthToken:
@@ -193,11 +193,10 @@ Resources:
             phases:
               build:
                 commands:
-                  - echo "Installing serverless"
-                  - npm install -g serverless
-                  - npm install serverless-dynamodb-local serverless-offline serverless-stack-output
-                  - echo "Deploying to $env"
-                  - serverless deploy --stage $env --package $CODEBUILD_SRC_DIR/artifacts/$env -v
+                  - echo $SHELL
+                  - chmod 700 deploy.sh
+                  - head -50 deploy.sh
+                  - bash deploy.sh
       Environment:
         Type: "LINUX_CONTAINER"
         ComputeType: BUILD_GENERAL1_SMALL
