@@ -34,7 +34,7 @@ Parameters:
   GitHubRepository:
     Type: String
     Default: getcft/aws-serverless-code-pipeline-cfn-template/master
-    Description:  owner/repository/branch
+    Description:  harishchitipothu/aws-serverless-code-pipeline-cf-template/master
 
   GitHubOAuthToken:
     Type: String
